@@ -1,0 +1,18 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.navbar {
+  text-align: center;
+  background: rgb(10 10 10 / 65%);
+  padding: 2rem;
+  width: 100%;
+}
+
+.title {
+  color: #fff;
+  text-transform: uppercase;
+}

@@ -1,0 +1,23 @@
+.glasses {
+  width: 100%;
+  min-height: 20rem;
+  background: #fff;
+  margin-top: 2rem;
+  padding: 3rem;
+  text-align: center;
+}
+
+.glasses__button {
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid #333;
+  background: none;
+}
+
+.button__image {
+  width: 10rem;
+  height: 5rem;
+  object-fit: contain;
+}
