@@ -17,7 +17,6 @@ const MovieSeatsSlice = createSlice({
       else{
         ListSeatsBookedUpdate.push(action.payload);
       }
-      console.log(ListSeatsBookedUpdate);
       return {
         ...state,
         bookedSeatList: ListSeatsBookedUpdate,
