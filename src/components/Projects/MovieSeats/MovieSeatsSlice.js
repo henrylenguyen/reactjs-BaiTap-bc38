@@ -9,10 +9,19 @@ const MovieSeatsSlice = createSlice({
   },
   reducers:{
     bookSeatTicket: (state,action)=>{
-      return{
-        ...state,
-        bookedSeatList: action.payload
+      let ListSeatsBookedUpdate = [...state.bookedSeatList];
+      let index = ListSeatsBookedUpdate.findIndex(item=>item.soGhe===action.payload.soGhe);
+      if(index!==-1){
+        ListSeatsBookedUpdate.splice(index,1);
       }
+      else{
+        ListSeatsBookedUpdate.push(action.payload);
+      }
+      console.log(ListSeatsBookedUpdate);
+      return {
+        ...state,
+        bookedSeatList: ListSeatsBookedUpdate,
+      };
     }
   }
 });

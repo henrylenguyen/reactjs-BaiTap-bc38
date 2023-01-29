@@ -2,6 +2,7 @@ import React from "react";
 import danhSachGhe from "./danhSachGhe.json";
 import RowSeat from "./RowSeat";
 const seatList = () => {
+  // Danh sách ghế ngồi
   return danhSachGhe.map((item, index) => {
     return (
       <div className="flex" key={index}>

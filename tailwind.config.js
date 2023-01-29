@@ -7,6 +7,12 @@ module.exports = {
       fontFamily: {
         primary: ["Poppins", "sans-serif"],
       },
+      colors: {
+        bookedColor: "#FACC15",
+        choosingColor: "#FB01D4",
+        normalColor: "#0E16DF",
+        vipColor: "#DF0E0E",
+      },
     },
   },
   plugins: [],
