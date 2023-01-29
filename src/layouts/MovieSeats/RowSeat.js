@@ -32,7 +32,7 @@ const RowSeat = (props) => {
           (choosing) => choosing.soGhe === item.soGhe
         );
         if (ChoosingSeat !== -1) {
-          cssChoosing = "bg-[#FB01D4]";
+          cssChoosing = "bg-[#FB01D4!important]";
         }
 
         return (
