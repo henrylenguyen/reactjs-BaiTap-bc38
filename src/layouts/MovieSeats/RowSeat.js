@@ -3,15 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { bookSeatTicket } from "../../components/Projects/MovieSeats/MovieSeatsSlice";
 // import { connect} from "react-redux";
 const RowSeat = (props) => {
-  const priceSeat = (price)=>{
-    if(price===100000){
+  const priceSeat = (price) => {
+    if (price === 100000) {
       return "bg-[#DF0E0E]";
-    }
-    else{
+    } else {
       return "bg-[#0E16DF]";
     }
-  }
-  const {bookedSeatList} = useSelector((state) => state.MovieSeats);
+  };
+  const { bookedSeatList } = useSelector((state) => state.MovieSeats);
   const dispatch = useDispatch();
   // Danh sách hàng ghế
   const renderSeat = () => {
@@ -28,11 +27,11 @@ const RowSeat = (props) => {
       });
     } else {
       return props.hanghe.danhSachGhe.map((item, index) => {
-        let cssChoosing = "";
+        let cssChoosing = " ";
         let ChoosingSeat = bookedSeatList.findIndex(
           (choosing) => choosing.soGhe === item.soGhe
         );
-        if(ChoosingSeat!==-1){
+        if (ChoosingSeat !== -1) {
           cssChoosing = "bg-[#FB01D4]";
         }
 
@@ -41,10 +40,10 @@ const RowSeat = (props) => {
             onClick={() => dispatch(bookSeatTicket(item))}
             disabled={item.daDat ? true : false}
             key={index}
-            // trạng thái ghế màu vàng là đã đặt màu xanh là chưa đặt
-            className={`w-[2rem] md:w-[5rem] text-[1rem] md:text-[1.8rem] ${cssChoosing} ${
+            // trạng thái ghế màu hồng là đã đặt màu xanh là chưa đặt
+            className={`w-[2rem] md:w-[5rem] text-[1rem] md:text-[1.8rem]  ${
               item.daDat ? "bg-[#655F64] cursor-no-drop" : priceSeat(item.gia)
-            }`}
+            } ${cssChoosing}`}
           >
             {item.soGhe}
           </button>
