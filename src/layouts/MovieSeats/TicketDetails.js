@@ -20,10 +20,10 @@ const TicketDetails = () => {
             onClick={() => dispatch(bookSeatTicket(item))}
           ></i>
           <div className="flex flex-col h-full w-full">
-            <span className="text-[#999] text-[0.8rem] md:text-[1.8rem]">
+            <span className="text-[#999]">
               Ghế {item.soGhe}
             </span>
-            <span className="font-semibold text-[0.8rem] md:text-[1.8rem]">
+            <span className="font-semibold">
               {convert.format(item.gia)}
             </span>
           </div>

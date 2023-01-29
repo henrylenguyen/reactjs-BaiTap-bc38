@@ -47,7 +47,7 @@ const LayoutMovieSeats = () => {
                     item.id === 1
                       ? "bg-[#655F64]"
                       : item.id === 2
-                      ? "bg-[#FACC15]"
+                      ? "bg-[#FB01D4]"
                       : item.id === 3
                       ? "bg-[#0E16DF]"
                       : item.id === 4
