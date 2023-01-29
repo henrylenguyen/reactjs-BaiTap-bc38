@@ -15,6 +15,6 @@ export const URLSlug = [
     id: 3,
     title: "movie seat selection",
     to: "/my-project/movie-seat-selection",
-    img: "./ProjectImages/minions.jpg",
+    img: "./ProjectImages/choose-seats-movie.png",
   },
 ];
