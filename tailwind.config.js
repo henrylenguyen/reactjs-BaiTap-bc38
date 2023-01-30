@@ -12,6 +12,8 @@ module.exports = {
         choosingColor: "#FB01D4",
         normalColor: "#0E16DF",
         vipColor: "#DF0E0E",
+        borderColor: "#0868FD",
+        buttonBlue: "#0368FE",
       },
     },
   },

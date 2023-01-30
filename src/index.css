@@ -2,43 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-html{
+
+html {
   font-size: 62.5%;
 }
-body{
-width: 100%;
-height: 100vh;
-font-size: 1.8rem;
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-size: 1.8rem;
 }
-img{
+
+img {
   display: block;
   max-width: 100%;
   /* width: 100%; */
   object-fit: cover;
 }
-a{
+
+a {
   text-decoration: none;
 }
-li{
+
+li {
   list-style: none;
 }
+
 input,
 button,
-textarea{
+textarea {
   outline: none;
   font-size: 1.8rem;
 }
-textarea{
+
+textarea {
   resize: none;
 }
-button{
+
+button {
   cursor: pointer;
 }
-body{
+
+body {
   background: rgb(25, 37, 65);
+  
 }

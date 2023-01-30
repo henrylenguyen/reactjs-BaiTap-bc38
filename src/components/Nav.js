@@ -6,13 +6,13 @@ import { NavLink, Outlet } from "react-router-dom";
 const navigation = [
   {
     id: 1,
-    title: "Home",
+    title: "Bài tập nộp",
     to: "/",
   },
   {
     id: 2,
-    title: "Contact",
-    to: "/contact",
+    title: "Bài tập khác",
+    to: "/bai-tap-khac",
   },
 ];
 
