@@ -65,7 +65,13 @@ const CardTitle = styled.h3`
   font-weight: bold;
   font-size: 2rem;
 `;
-const Card = ({to, image, title, btnSecondary }) => {
+const CardButtonGroup = styled.div`
+  display: flex;
+  @media screen and (max-width: 480px) {
+    flex-direction: column;
+  }
+`;
+const Card = ({ to, image, title, btnSecondary, href, hrefOthers }) => {
   return (
     <StyledCard>
       <StyledImage>
@@ -74,12 +80,20 @@ const Card = ({to, image, title, btnSecondary }) => {
       <CardContent>
         <CardBottom>
           <CardTitle>{title}</CardTitle>
-          <div className="card__button">
-            <Link to={to}>
-              <CardButton>Live</CardButton>
-            </Link>
-            <CardButton btnSecondary={btnSecondary}>View Source</CardButton>
-          </div>
+          <CardButtonGroup>
+            {to === undefined ? (
+              <a href={hrefOthers}>
+                <CardButton>Live</CardButton>
+              </a>
+            ) : (
+              <Link to={to}>
+                <CardButton>Live</CardButton>
+              </Link>
+            )}
+            <a href={href}>
+              <CardButton btnSecondary={btnSecondary}>View Source</CardButton>
+            </a>
+          </CardButtonGroup>
         </CardBottom>
       </CardContent>
     </StyledCard>

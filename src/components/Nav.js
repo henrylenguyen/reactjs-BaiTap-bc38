@@ -30,13 +30,13 @@ export default function Nav() {
               aria-label="Global"
             >
               <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-                <a href="#" className="-m-1.5 p-1.5">
+                <NavLink to={"/"} className="-m-1.5 p-1.5">
                   <img
                     className="h-[7rem]"
                     src="https://cybersoft.edu.vn/wp-content/uploads/2022/10/cyberlogo-white.png"
                     alt="cyberSoft"
                   />
-                </a>
+                </NavLink>
               </div>
               <div className="flex lg:hidden">
                 <button
@@ -66,17 +66,17 @@ export default function Nav() {
             <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
               <Dialog.Panel
                 focus="true"
-                className="fixed inset-0 z-10 overflow-y-auto bg-black  px-6 py-6 lg:hidden"
+                className="fixed inset-x-0 top-0 z-[9999] overflow-y-auto bg-[#191919]  px-6 py-6 lg:hidden"
               >
                 <div className="flex h-9 items-center justify-between ">
                   <div className="flex">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <NavLink to={"/"} className="-m-1.5 p-1.5">
                       <img
                         className="h-8"
                         src="https://cybersoft.edu.vn/wp-content/uploads/2022/10/cyberlogo-white.png"
                         alt="cyberSoft"
                       />
-                    </a>
+                    </NavLink>
                   </div>
                   <div className="flex">
                     <button
@@ -91,15 +91,19 @@ export default function Nav() {
                 </div>
                 <div className="mt-6 flow-root">
                   <div className="-my-6 divide-y divide-gray-500/10">
-                    <div className="space-y-2 py-6">
+                    <div className="space-y-2 py-6 text-center">
                       {navigation.map((item) => (
-                        <a
+                        <NavLink
                           key={item.id}
-                          href={item.href}
-                          className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-white hover:text-fuchsia-700"
+                          to={item.to}
+                          className={({ isActive }) =>
+                            isActive
+                              ? "font-semibold  text-[#fea255] hover:text-[#e07211] -mx-3 block py-5 leading-7"
+                              : "font-semibold  text-white hover:text-[#fea255]  -mx-3 block py-5  leading-7"
+                          }
                         >
-                          {item.name}
-                        </a>
+                          {item.title}
+                        </NavLink>
                       ))}
                     </div>
                   </div>

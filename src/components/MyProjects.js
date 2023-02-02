@@ -20,6 +20,8 @@ const MyProjects = () => {
             image={item.img}
             btnSecondary={true}
             to={item.to}
+            href={item.href}
+           
           ></Card>
         ))}
       </CardList>
