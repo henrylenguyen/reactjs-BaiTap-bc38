@@ -20,7 +20,9 @@ const CardDetails = () => {
       ) : slug === "student-management" ? (
         <FormStudents></FormStudents>
       ) : slug === "student-management-version-2" ? (
-        <FormStudents></FormStudents>
+        <h1 className="text-center text-white text-[50px]">
+          Dữ liệu đang được cập nhật
+        </h1>
       ) : (
         ""
       )}
