@@ -138,10 +138,7 @@ class FormAddSV extends Component {
         valid = false;
       }
     }
-    this.setState({
-      ...this.state,
-      valid: valid,
-    });
+    this.props.KiemTraHopLe(valid);
   };
 
   // static getDerivedStateFromProps(newProps,currentState){
@@ -152,6 +149,7 @@ class FormAddSV extends Component {
   // }
   render() {
     return (
+      
       <div className="my-5">
         <h2 className="bg-black text-white font-bold text-[2rem] md:text-[4rem] text-center p-3">
           Thông tin sinh viên
@@ -235,11 +233,11 @@ class FormAddSV extends Component {
           {this.props.buttonUpdate && this.props.buttonUpdate ? (
             <button
               type="submit"
-              disabled={this.state.valid ? false : true}
+              disabled={this.props.valid ? false : true}
               onClick={this.handleUpdate}
               className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl 
                           ${
-                            this.state.valid
+                            this.props.valid
                               ? "bg-green-400 cursor-pointer"
                               : "bg-slate-500 cursor-not-allowed"
                           }`}
@@ -249,11 +247,11 @@ class FormAddSV extends Component {
           ) : (
             <button
               type="submit"
-              disabled={this.state.valid ? false : true}
+              disabled={this.props.valid ? false : true}
               onClick={this.handleAdd}
               className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl 
                           ${
-                            this.state.valid
+                            this.props.valid
                               ? "bg-buttonBlue cursor-pointer"
                               : "bg-slate-500 cursor-not-allowed"
                           }`}
@@ -278,6 +276,7 @@ const mapStateToProps = (state) => {
   return {
     svUpdate: state.QLSV.svUpdate,
     buttonUpdate: state.QLSV.buttonUpdate,
+    valid: state.QLSV.valid,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -294,6 +293,13 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: "QLSV/CapNhatSinhVien",
         sinhvien,
+      };
+      dispatch(action);
+    },
+    KiemTraHopLe:(kiemTra)=>{
+      const action = {
+        type: "QLSV/KiemTraHopLe",
+        kiemTra,
       };
       dispatch(action);
     },

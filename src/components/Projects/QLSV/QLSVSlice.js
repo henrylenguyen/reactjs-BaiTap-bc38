@@ -9,25 +9,19 @@ const QLSVSlice = createSlice({
         fullname: "Lê Nguyễn Phương Thái",
         phone: "0123456789",
         email: "mail@gmail.com",
-      },
-      {
-        mssv: 2,
-        fullname: "Lê Nguyễn Phương Thái",
-        phone: "0123456789",
-        email: "mail@gmail.com",
-      },
-      {
-        mssv: 3,
-        fullname: "Lê Nguyễn Phương Thái",
-        phone: "0123456789",
-        email: "mail@gmail.com",
-      },
+      }
     ],
     svUpdate: {},
     buttonUpdate: false,
     valid: false,
   },
   reducers: {
+    KiemTraHopLe: (state,action)=>{
+      return {
+        ...state,
+        valid: action.kiemTra,
+      };
+    },
     ThemSinhVien: (state, action) => {
       return {
         ...state,
@@ -63,11 +57,10 @@ const QLSVSlice = createSlice({
       if (index !== -1) {
         svListUpdate[index] = state.svUpdate;
       }
-
+      // Cập nhật lại state
       state.SVList = svListUpdate;
       state.buttonUpdate = false;
-      console.log("state", state);
-
+      state.valid = false;
       return state;
     },
   },

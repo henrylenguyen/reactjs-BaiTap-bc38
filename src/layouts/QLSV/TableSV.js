@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Filter from "./Filter";
 /**
  * Bài tập được xây dựng bằng class component kết hợp với redux toolkit
  * Hàm mapStateToProps nếu viết bằng function component sẽ được thay thế bằng useSelector
@@ -14,7 +15,7 @@ class TableSV extends Component {
   handleEdit = (sinhvien) => {
     this.props.EditSinhVien(sinhvien);
   };
-  
+
   renderSinhVien = () => {
     const { SVList } = this.props;
     return SVList.map((sv, index) => {
@@ -58,11 +59,7 @@ class TableSV extends Component {
   render() {
     return (
       <div className="mb-20">
-        <input
-          type="text"
-          placeholder="Nhập MSSV hoặc tên sinh viên cần tìm"
-          className="p-5 w-[100%] md:w-[50%] text-white bg-transparent border-b border-borderColor my-10 "
-        />
+        <Filter></Filter>
         <div className="overflow-auto">
           <table className="table-auto w-full   text-center ">
             <thead>
