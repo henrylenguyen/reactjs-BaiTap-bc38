@@ -9,19 +9,39 @@ const QLSVSlice = createSlice({
         fullname: "Lê Nguyễn Phương Thái",
         phone: "0123456789",
         email: "mail@gmail.com",
-      }
+      },
+      {
+        mssv: 2,
+        fullname: "Lê Nguyễn Phương Thảo",
+        phone: "0123456789",
+        email: "mail@gmail.com",
+      },
+      {
+        mssv: 3,
+        fullname: "Trần Mẫn Nghi",
+        phone: "0123456789",
+        email: "mail@gmail.com",
+      },
+      {
+        mssv: 1911062251,
+        fullname: "Lê Nguyễn Phương Hồng Thủy",
+        phone: "0123456789",
+        email: "mail@gmail.com",
+      },
     ],
     svUpdate: {},
     buttonUpdate: false,
     valid: false,
+    filter: [],
   },
   reducers: {
-    KiemTraHopLe: (state,action)=>{
+    KiemTraHopLe: (state, action) => {
       return {
         ...state,
         valid: action.kiemTra,
       };
     },
+    // DanhSachSinhVien
     ThemSinhVien: (state, action) => {
       return {
         ...state,
@@ -62,6 +82,25 @@ const QLSVSlice = createSlice({
       state.buttonUpdate = false;
       state.valid = false;
       return state;
+    },
+    TimKiemSinhVien: (state, { sinhvien }) => {
+      let svFilter = [...state.SVList];
+      let search = sinhvien.trim().toLowerCase();
+      if (search === "") {
+        console.log("Đang tìm cách xử lý")
+      } else {
+        let index = svFilter.findIndex(
+          (sv) =>
+            sv.fullname.toLowerCase().includes(search) ||
+            sv.mssv.toString() === search
+        );
+        if (index !== -1) {
+          return {
+            ...state,
+            filter: [svFilter[index]],
+          };
+        }
+      }
     },
   },
 });
