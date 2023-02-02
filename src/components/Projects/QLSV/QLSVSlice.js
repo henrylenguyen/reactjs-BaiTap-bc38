@@ -5,28 +5,28 @@ const QLSVSlice = createSlice({
   initialState: {
     SVList: [
       {
-        mssv: 1,
-        fullname: "Lê Nguyễn Phương Thái",
+        mssv: 1234,
+        fullname: "Nguyễn văn A",
         phone: "0123456789",
-        email: "mail@gmail.com",
+        email: "Amail@gmail.com",
       },
       {
-        mssv: 2,
-        fullname: "Lê Nguyễn Phương Thảo",
+        mssv: 1235,
+        fullname: "Lê văn B",
         phone: "0123456789",
-        email: "mail@gmail.com",
+        email: "Bmail@gmail.com",
       },
       {
-        mssv: 3,
-        fullname: "Trần Mẫn Nghi",
+        mssv: 1236,
+        fullname: "Lê Thị C",
         phone: "0123456789",
-        email: "mail@gmail.com",
+        email: "Cmail@gmail.com",
       },
       {
-        mssv: 1911062251,
-        fullname: "Lê Nguyễn Phương Hồng Thủy",
+        mssv: 1237,
+        fullname: "Lê Nguyễn D",
         phone: "0123456789",
-        email: "mail@gmail.com",
+        email: "Dmail@gmail.com",
       },
     ],
     svUpdate: {},
@@ -87,7 +87,7 @@ const QLSVSlice = createSlice({
       let svFilter = [...state.SVList];
       let search = sinhvien.trim().toLowerCase();
       if (search === "") {
-        console.log("Đang tìm cách xử lý")
+        console.log("Đang tìm cách xử lý");
       } else {
         let index = svFilter.findIndex(
           (sv) =>
