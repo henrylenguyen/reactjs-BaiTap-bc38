@@ -4,10 +4,7 @@ import { Data } from "./Data.js";
 import Button from "./Button";
 
 const Glasses = (props) => {
-  // console.log(props);
-  // function log(value){
-  //   console.log(value);
-  // }
+
   return (
     <div className={styleGlasses.glasses}>
       {/* Nhấn vào mỗi nút thì sẽ nhận tương ứng với giá trị id của nó */}

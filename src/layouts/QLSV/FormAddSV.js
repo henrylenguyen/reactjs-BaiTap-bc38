@@ -18,7 +18,7 @@ class FormAddSV extends Component {
       email: "",
       phone: "",
     },
-    valid: false,
+    
   };
 
   handleChange = (e) => {
@@ -90,7 +90,7 @@ class FormAddSV extends Component {
         }
       }
     }
-    // cập nhật lại giá trị và lỗi cho state
+    // cập nhật lại giá trị và lỗi cho state, dùng [] là cập nhật động
     let valuesUpdate = { ...this.state.values, [name]: value };
     let errorsUpdate = { ...this.state.errors, [name]: errorMassages };
     this.setState(
@@ -104,9 +104,32 @@ class FormAddSV extends Component {
       }
     );
   };
-  handleSubmit = (e) => {
+  // handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // this.props.ThemSinhVien(this.state.values);
+
+  // };
+  handleReset = () => {
+    this.setState({
+      ...this.state,
+      values: {
+        mssv: "",
+        fullname: "",
+        email: "",
+        phone: "",
+      },
+    });
+  };
+  handleAdd = (e) => {
     e.preventDefault();
     this.props.ThemSinhVien(this.state.values);
+    this.handleReset();
+  };
+  handleUpdate = (e) => {
+    e.preventDefault();
+    this.props.CapNhatSinhVien(this.state.values);
+    this.handleReset();
+    // this.props.buttonUpdate = false;
   };
   checkValid = () => {
     let valid = true;
@@ -121,6 +144,12 @@ class FormAddSV extends Component {
     });
   };
 
+  // static getDerivedStateFromProps(newProps,currentState){
+  //   console.log("newProps", newProps);
+  //   console.log("currentState", currentState);
+  //   let newState = { ...currentState, values: newProps.svUpdate };
+  //   return newState;
+  // }
   render() {
     return (
       <div className="my-5">
@@ -130,19 +159,31 @@ class FormAddSV extends Component {
         <form
           autoComplete="off"
           className="text-white w-full grid grid-cols-2 blockSm padding-2 gap-12 p-10  bg-[#212F4F]"
-          onSubmit={this.handleSubmit}
+          // onSubmit={this.handleSubmit}
         >
           <div>
             <label htmlFor="mssv">Mã số sinh viên:</label>
-            <input
-              type="text"
-              name="mssv"
-              id="mssv"
-              className="w-full py-5 px-10 bg-transparent border-b border-borderColor text-[2rem] text-white"
-              autoFocus
-              value={this.state.values.mssv}
-              onChange={this.handleChange}
-            />
+            {this.props.buttonUpdate && this.props.buttonUpdate ? (
+              <input
+                type="text"
+                name="mssv"
+                id="mssv"
+                className="w-full py-5 px-10 bg-transparent border-b border-borderColor text-[2rem] text-gray-500"
+                disabled
+                value={this.state.values.mssv}
+                onChange={this.handleChange}
+              />
+            ) : (
+              <input
+                type="text"
+                name="mssv"
+                id="mssv"
+                className="w-full py-5 px-10 bg-transparent border-b border-borderColor text-[2rem] text-white"
+                autoFocus
+                value={this.state.values.mssv}
+                onChange={this.handleChange}
+              />
+            )}
             <span className="text-red-500 italic text-[13px] md:text-[18px]">
               {this.state.errors.mssv}
             </span>
@@ -191,23 +232,54 @@ class FormAddSV extends Component {
               {this.state.errors.phone}
             </span>
           </div>
-          <button
-            type="submit"
-            disabled={this.state.valid ? false : true}
-            className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl 
+          {this.props.buttonUpdate && this.props.buttonUpdate ? (
+            <button
+              type="submit"
+              disabled={this.state.valid ? false : true}
+              onClick={this.handleUpdate}
+              className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl 
+                          ${
+                            this.state.valid
+                              ? "bg-green-400 cursor-pointer"
+                              : "bg-slate-500 cursor-not-allowed"
+                          }`}
+            >
+              Cập nhật sinh viên
+            </button>
+          ) : (
+            <button
+              type="submit"
+              disabled={this.state.valid ? false : true}
+              onClick={this.handleAdd}
+              className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl 
                           ${
                             this.state.valid
                               ? "bg-buttonBlue cursor-pointer"
                               : "bg-slate-500 cursor-not-allowed"
                           }`}
-          >
-            Thêm sinh viên
-          </button>
+            >
+              Thêm sinh viên
+            </button>
+          )}
         </form>
       </div>
     );
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.svUpdate.mssv !== this.props.svUpdate.mssv) {
+      this.setState({
+        ...this.state,
+        values: this.props.svUpdate,
+      });
+    }
+  }
 }
+const mapStateToProps = (state) => {
+  return {
+    svUpdate: state.QLSV.svUpdate,
+    buttonUpdate: state.QLSV.buttonUpdate,
+  };
+};
 const mapDispatchToProps = (dispatch) => {
   // trả về 1 sự kiện
   return {
@@ -218,6 +290,13 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
+    CapNhatSinhVien: (sinhvien) => {
+      const action = {
+        type: "QLSV/CapNhatSinhVien",
+        sinhvien,
+      };
+      dispatch(action);
+    },
   };
 };
-export default connect(null, mapDispatchToProps)(FormAddSV);
+export default connect(mapStateToProps, mapDispatchToProps)(FormAddSV);

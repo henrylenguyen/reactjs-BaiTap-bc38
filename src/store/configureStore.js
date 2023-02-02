@@ -11,7 +11,7 @@ const sagaMiddleWare = createSagaMiddleware();
 const store = configureStore({
   reducer: reducer,
   composeEnhancers,
-  middleware: (gDM) => gDM().concat(logger, sagaMiddleWare),
+  middleware: (gDM) => gDM().concat(sagaMiddleWare),
 });
 
 // sagaMiddleWare.run(rootSaga)
