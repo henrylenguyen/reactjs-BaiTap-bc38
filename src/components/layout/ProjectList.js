@@ -1,15 +1,16 @@
-import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import Card from './card/Card';
-import CardList from './card/CardList';
-import { URLSlug } from "./URLSlug.js";
+import React from "react";
+import { ThemeProvider } from "styled-components";
+import Card from "../card/Card";
+import CardList from "../card/CardList";
+import { URLSlug } from "../URL/URLSlug";
+
 const theme = {
   colors: {
     primary: "#333",
   },
 };
 
-const MyProjects = () => {
+const ProjectList = () => {
   return (
     <ThemeProvider theme={theme}>
       <CardList>
@@ -25,6 +26,7 @@ const MyProjects = () => {
         ))}
       </CardList>
     </ThemeProvider>
-  );};
+  );
+};
 
-export default MyProjects;
+export default ProjectList;

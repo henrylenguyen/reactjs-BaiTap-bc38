@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class Filter extends Component {
+class SearchStudents extends Component {
   handleFilter = (e) => {
     const { value } = e.target;
     this.props.TimKiemSinhVien(value);
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(null, mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(SearchStudents);

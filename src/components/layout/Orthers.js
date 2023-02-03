@@ -1,9 +1,10 @@
 import React from "react";
-import Card from "./card/Card";
-import CardList from "./card/CardList";
-import { URLOthers } from "./URLOthers";
+import Card from "../card/Card";
+import CardList from "../card/CardList";
+import { URLOthers } from "../URL/URLOthers";
 
-const BaiTapKhac = () => {
+
+const Others = () => {
   return (
     <div>
       <h1 className="text-center text-white font-bold text-[4rem]">
@@ -25,4 +26,4 @@ const BaiTapKhac = () => {
   );
 };
 
-export default BaiTapKhac;
+export default Others;

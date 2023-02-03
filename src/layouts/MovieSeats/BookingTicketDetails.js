@@ -5,11 +5,11 @@ const convert = new Intl.NumberFormat("vi-VN", {
   style: "currency",
   currency: "VND",
 });
-const TicketDetails = () => {
+const BookingTicketDetails = () => {
   const { bookedSeatList } = useSelector((state) => state.MovieSeats);
   const dispatch = useDispatch();
   return (
-    <div className="sm: p-[2rem] grid grid-cols-3 gap-5 md:p-[3rem] lg:grid-cols-2">
+    <div className="sm: p-[2rem] grid grid-cols-3 gap-5 md:p-[3rem] sm:grid-cols-4 xl:grid-cols-2">
       {bookedSeatList.map((item, index) => (
         <button
           key={index}
@@ -20,12 +20,8 @@ const TicketDetails = () => {
             onClick={() => dispatch(bookSeatTicket(item))}
           ></i>
           <div className="flex flex-col h-full w-full">
-            <span className="text-[#999]">
-              Ghế {item.soGhe}
-            </span>
-            <span className="font-semibold">
-              {convert.format(item.gia)}
-            </span>
+            <span className="text-[#999]">Ghế {item.soGhe}</span>
+            <span className="font-semibold">{convert.format(item.gia)}</span>
           </div>
         </button>
       ))}
@@ -33,4 +29,4 @@ const TicketDetails = () => {
   );
 };
 
-export default TicketDetails;
+export default BookingTicketDetails;

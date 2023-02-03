@@ -1,10 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import LayoutMovieSeats from "../../layouts/MovieSeats/LayoutMovieSeats.js";
-import FormStudents from "../../layouts/QLSV/FormStudents.js";
-import Layout from "../../layouts/ChooseGlasses/Layout.js";
 
-const CardDetails = () => {
+
+import Layout from "../../layouts/ChooseGlasses/Layout.js";
+import BookingTicketContainer from "../../layouts/MovieSeats/BookingTicketContainer.js";
+import StudentsContainer from "../../layouts/QLSV/StudentsContainer.js";
+
+const LiveView = () => {
   const { slug } = useParams();
   // console.log("slug", slug);
   return (
@@ -16,9 +18,9 @@ const CardDetails = () => {
       ) : slug === "choose-glasses" ? (
         <Layout></Layout>
       ) : slug === "movie-seat-selection" ? (
-        <LayoutMovieSeats></LayoutMovieSeats>
+        <BookingTicketContainer></BookingTicketContainer>
       ) : slug === "student-management" ? (
-        <FormStudents></FormStudents>
+        <StudentsContainer></StudentsContainer>
       ) : slug === "student-management-version-2" ? (
         <h1 className="text-center text-white text-[50px]">
           Dữ liệu đang được cập nhật
@@ -30,4 +32,4 @@ const CardDetails = () => {
   );
 };
 
-export default CardDetails;
+export default LiveView;

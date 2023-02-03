@@ -15,7 +15,7 @@ const CardListStyle = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 200px 30px;
-    padding: 10px;
+    padding: 50px 10px;
   }
 `;
 const CardList = (props) => {

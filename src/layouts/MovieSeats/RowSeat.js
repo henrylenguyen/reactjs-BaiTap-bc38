@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { bookSeatTicket } from "../../components/Projects/MovieSeats/MovieSeatsSlice";
-// import { connect} from "react-redux";
+
 const RowSeat = (props) => {
   const priceSeat = (price) => {
     if (price === 100000) {
@@ -12,6 +12,7 @@ const RowSeat = (props) => {
   };
   const { bookedSeatList } = useSelector((state) => state.MovieSeats);
   const dispatch = useDispatch();
+
   // Danh sách hàng ghế
   const renderSeat = () => {
     if (props.columnSeat === 0) {
@@ -41,7 +42,7 @@ const RowSeat = (props) => {
             disabled={item.daDat ? true : false}
             key={index}
             // trạng thái ghế màu hồng là đã đặt màu xanh là chưa đặt
-            className={`w-[2rem] md:w-[5rem] text-[1rem] md:text-[1.8rem]  ${
+            className={`w-[2rem] sm:w-[4rem] lg:w-[7rem] xl:w-[5rem] text-[1rem] md:text-[1.8rem]  ${
               item.daDat ? "bg-[#655F64] cursor-no-drop" : priceSeat(item.gia)
             } ${cssChoosing}`}
           >
@@ -53,17 +54,12 @@ const RowSeat = (props) => {
   };
   return (
     <div className="pt-3 font-bold text-[2.5rem] flex justify-around w-full">
-      <span className="p-3 inline-block w-[2rem] md:w-[5rem] text-[1rem] md:text-[1.8rem]  text-center">
+      <span className="p-3 inline-block w-[2rem] md:w-[5rem]  text-[1rem] md:text-[1.8rem]  text-center">
         {props.hanghe.hang}
       </span>
       {renderSeat()}
     </div>
   );
 };
-// const mapStateToProps = (state) => {
-//   return {
-//     bookedSeatList: state.MovieSeatsSlice.bookedSeatList,
-//   };
-// };
-// export default connect(mapStateToProps)(RowSeat);
+
 export default RowSeat;

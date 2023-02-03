@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-class FormAddSV extends Component {
+class FormAddUpdateStudents extends Component {
   rexSpecialCharacter = /[~`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
   rexNumber = /[0-9]/;
   rexCharacter = /[a-zA-Z]/;
@@ -18,7 +18,6 @@ class FormAddSV extends Component {
       email: "",
       phone: "",
     },
-    
   };
 
   handleChange = (e) => {
@@ -149,7 +148,6 @@ class FormAddSV extends Component {
   // }
   render() {
     return (
-      
       <div className="my-5">
         <h2 className="bg-black text-white font-bold text-[2rem] md:text-[4rem] text-center p-3">
           Thông tin sinh viên
@@ -296,7 +294,7 @@ const mapDispatchToProps = (dispatch) => {
       };
       dispatch(action);
     },
-    KiemTraHopLe:(kiemTra)=>{
+    KiemTraHopLe: (kiemTra) => {
       const action = {
         type: "QLSV/KiemTraHopLe",
         kiemTra,
@@ -305,4 +303,7 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(FormAddSV);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormAddUpdateStudents);

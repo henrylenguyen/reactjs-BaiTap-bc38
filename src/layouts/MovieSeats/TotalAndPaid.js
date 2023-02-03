@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import Swal from "sweetalert2";
 import "../../components/Projects/MovieSeats/sweetAlert.css"
-const TotalPrice = () => {
+
+const TotalAndPaid = () => {
  const { bookedSeatList } = useSelector((state) => state.MovieSeats);
 const convert = new Intl.NumberFormat("vi-VN", {
   style: "currency",
@@ -66,6 +67,7 @@ const convert = new Intl.NumberFormat("vi-VN", {
 
   }
   let total = handleTotalPrice();
+  
   return (
     <div>
       {total !== 0 ? (
@@ -94,4 +96,4 @@ const convert = new Intl.NumberFormat("vi-VN", {
   );
 };
 
-export default TotalPrice;
+export default TotalAndPaid;

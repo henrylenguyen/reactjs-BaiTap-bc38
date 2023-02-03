@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SeatDetails = () => {
+const BookingInfor = () => {
   return (
     <div>
       <div className="md:text-[3rem] sm:text-[2rem] font-bold flex gap-20 md: items-center ">
@@ -18,4 +18,4 @@ const SeatDetails = () => {
   );
 };
 
-export default SeatDetails;
+export default BookingInfor;
