@@ -8,7 +8,7 @@ const Others = () => {
   return (
     <div>
       <h1 className="text-center text-white font-bold text-[4rem]">
-        Tổng hợp các bài tập nâng cao và bài tập trên lớp của CYBERSOFT
+        Tổng hợp các bài tập tự luyện
       </h1>
       <CardList>
         {URLOthers.map((item) => (

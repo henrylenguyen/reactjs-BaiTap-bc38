@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../../layouts/ChooseGlasses/Layout.js";
 import BookingTicketContainer from "../../layouts/MovieSeats/BookingTicketContainer.js";
 import StudentsContainer from "../../layouts/QLSV/StudentsContainer.js";
+import PageNotFound from "../layout/PageNotFound.js";
 
 const LiveView = () => {
   const { slug } = useParams();
@@ -26,7 +27,7 @@ const LiveView = () => {
           Dữ liệu đang được cập nhật
         </h1>
       ) : (
-        ""
+        <PageNotFound></PageNotFound>
       )}
     </div>
   );

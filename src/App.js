@@ -4,6 +4,7 @@ import LiveView from "./components/card/LiveView";
 import ProjectList from "./components/layout/ProjectList";
 import Nav from "./components/layout/Header";
 import Others from "./components/layout/Orthers";
+import PageNotFound from "./components/layout/PageNotFound";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
             element={<Others></Others>}
           ></Route>
         </Route>
-        <Route path="*" element={<>This is 404 page</>}></Route>
+        <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
       </Routes>
     </div>
   );
