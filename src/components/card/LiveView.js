@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Layout from "../../layouts/ChooseGlasses/Layout.js";
 import BookingTicketContainer from "../../layouts/MovieSeats/BookingTicketContainer.js";
 import StudentsContainer from "../../layouts/QLSV/StudentsContainer.js";
+import StudentsContainerAPI from "../../layouts/QLSV_ver2/StudentsContainer.js";
 import PageNotFound from "../layout/PageNotFound.js";
 
 const LiveView = () => {
@@ -23,9 +24,7 @@ const LiveView = () => {
       ) : slug === "student-management" ? (
         <StudentsContainer></StudentsContainer>
       ) : slug === "student-management-version-2" ? (
-        <h1 className="text-center text-white text-[50px]">
-          Dữ liệu đang được cập nhật
-        </h1>
+        <StudentsContainerAPI></StudentsContainerAPI>
       ) : (
         <PageNotFound></PageNotFound>
       )}

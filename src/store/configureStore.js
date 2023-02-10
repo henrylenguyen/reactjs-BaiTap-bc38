@@ -14,5 +14,5 @@ const store = configureStore({
   middleware: (gDM) => gDM().concat(sagaMiddleWare),
 });
 
-// sagaMiddleWare.run(rootSaga)
+sagaMiddleWare.run(rootSaga)
 export default store;
