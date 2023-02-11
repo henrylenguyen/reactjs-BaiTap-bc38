@@ -6,12 +6,12 @@ const schema = yup
     mssv: yup
       .string()
       .required("Mã số sinh viên không được để trống")
-      .matches(/[0-9]/, { message: "Mã số sinh viên phải là số" }),
+      .matches(/^[0-9]+$/, { message: "Mã số sinh viên phải là số" }),
     fullname: yup
       .string()
       .required("Họ và tên không được để trống")
       .matches(
-        /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
+        /^[a-zA-ZêÊĐĂăâÂẠẤấẮắẦầẨẩẬậạẹẸơƠờỜởỞợÍíỊịÚụúÙùủỦỤƯưỨứỪừỬửỰựỢặẶẰằẲẳÊêỂểỀềỆệễỄẾếđàáäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
         { message: "Họ và tên không được chứa số và ký tự đặc biệt" }
       ),
     email: yup

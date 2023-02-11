@@ -26,3 +26,20 @@ export function* handleCreateDataSaga({ values }) {
     yield put(getSV());
   }
 }
+// khi dispatch sẽ kèm theo values của input, dùng destructuring lấy ra id và các phần còn lại để gửi lên API
+export function* handleUpdateDataSaga({payload:{id,...rest}}){
+   let { status } = yield call(() => {
+    return QLSVAPI.UpdateDataQLSV(id,rest);
+  });
+   if (status === SUCCESSED) {
+    yield put(getSV());
+  }
+}
+export function* handleDeleteDataSaga({payload}){
+   let { status } = yield call(() => {
+    return QLSVAPI.DeleteDataQLSV(payload);
+  });
+   if (status === SUCCESSED) {
+    yield put(getSV());
+  }
+}

@@ -14,6 +14,13 @@ export  function CreateDataQLSV(data){
     data
   });
 }
+export  function UpdateDataQLSV(id,data){
+  return axios.request({
+    method: "PUT",
+    url: "https://63d9c8f52af48a60a7bf8aa1.mockapi.io/QuanLySinhVien/"+id,
+    data
+  });
+}
 export  function DeleteDataQLSV(id){
   return axios.request({
     method: "DELETE",

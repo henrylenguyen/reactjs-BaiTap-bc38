@@ -6,10 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { DevTool } from "@hookform/devtools";
 import schema from "./validateSchema";
 import { useDispatch, useSelector } from "react-redux";
-import { CREATE_SV } from "../../constants/QLSV";
-
+import { CREATE_SV, UPDATE_SV } from "../../constants/QLSV";
+import { CancelUpdateSinhVien, UpdateSinhVien } from "../../components/Projects/QLSV_Version2/QLSV_Version2_Slice";
 
 function FormAddUpdateStudents() {
+  const { isUpdate, updateSV } = useSelector((state) => state.QLSV_API);
   const dispatch = useDispatch();
   // ----------------------Dùng useForm để quản lý----------------------
   const {
@@ -17,34 +18,61 @@ function FormAddUpdateStudents() {
     handleSubmit,
     reset,
     setFocus,
+    setValue,
     formState: { errors, isSubmitting, isValid },
   } = useForm({ resolver: yupResolver(schema) });
+
   useEffect(() => {
     setFocus("mssv");
-  }, [setFocus]);
-  
-  
+    if (isUpdate) {
+      // dùng entrie để tách đối tượng thành 1 mảng theo key và value
+      let obj = Object.entries(updateSV);
+      // sau khi tách xong thì set lại value
+      obj.forEach((item) => setValue(item[0], item[1]));
+    }
+  }, [isUpdate, setFocus, setValue, updateSV]);
+
+  const resetData = () => {
+    reset({
+      mssv: "",
+      fullname: "",
+      email: "",
+      phone: "",
+    });
+  };
   const submitForm = (values) => {
     if (!isValid) return;
-    dispatch({
-      type: CREATE_SV,
-      values,
-    });
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-        reset({
-          mssv: "",
-          fullname: "",
-          email: "",
-          phone: "",
-        });
+    if (!isUpdate) {
+      dispatch({
+        type: CREATE_SV,
+        values,
+      });
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          resetData();
+        }, 500);
 
-      }, 500);
+        setFocus("mssv");
+      });
+    } else {
+      dispatch(UpdateSinhVien(values));
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve();
+          resetData();
+        }, 500);
 
-      setFocus("mssv");
-    });
-    
+        setFocus("mssv");
+      });
+    }
+  };
+
+  //----------------------------HỦY CẬP NHẬT SINH VIÊN--------------------------
+  const handleCancelUpdate = () => {
+    dispatch(CancelUpdateSinhVien());
+    setFocus("mssv");
+    resetData();
   };
 
   return (
@@ -66,7 +94,9 @@ function FormAddUpdateStudents() {
             name="mssv"
             id="mssv"
             type="text"
-            placeholder="1911062251"
+            placeholder="1234...."
+            disabled={isUpdate}
+            isUpdate={isUpdate}
           ></Input>
           <span className="text-red-500 italic text-[13px] md:text-[18px]">
             {errors?.mssv?.message}
@@ -121,17 +151,30 @@ function FormAddUpdateStudents() {
 
         <button
           type="submit"
-          className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl bg-buttonBlue cursor-pointer ${
-            isSubmitting ? "opacity-50" : ""
-          }`}
+          className={`p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl  cursor-pointer ${
+            isUpdate ? "bg-green-400" : "bg-buttonBlue"
+          } ${isSubmitting ? "opacity-50" : ""}`}
           disabled={isSubmitting}
         >
           {isSubmitting ? (
             <div className="w-[20px] h-[20px] rounded-full border-2 border-white border-t-2 border-t-transparent mx-auto animate-spin"></div>
+          ) : isUpdate ? (
+            "Cập Nhật Sinh Viên"
           ) : (
-            "Thêm sinh viên"
+            "Thêm Sinh Viên"
           )}
         </button>
+        {isUpdate ? (
+          <button
+            type="submit"
+            className="p-3 md:p-5 text-[13px] md:text-[18px]  font-bold rounded-xl  cursor-pointer bg-red-400"
+            onClick={handleCancelUpdate}
+          >
+            Hủy
+          </button>
+        ) : (
+          ""
+        )}
       </form>
       {/* <DevTool control={control} placement="top-right" /> */}
     </div>
