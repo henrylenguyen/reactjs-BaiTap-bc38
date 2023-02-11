@@ -3,37 +3,14 @@ import { useForm } from "react-hook-form";
 import Input from "../../components/input/Input";
 
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { DevTool } from "@hookform/devtools";
+import schema from "./validateSchema";
+import { useDispatch, useSelector } from "react-redux";
+import { CREATE_SV } from "../../constants/QLSV";
 
-//---------------------------Validate form-------------------------------
-const schema = yup
-  .object({
-    mssv: yup
-      .string()
-      .required("Mã số sinh viên không được để trống")
-      .matches(/[0-9]/, { message: "Mã số sinh viên phải là số" }),
-    fullname: yup
-      .string()
-      .required("Họ và tên không được để trống")
-      .matches(
-        /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u,
-        { message: "Họ và tên không được chứa số và ký tự đặc biệt" }
-      ),
-    email: yup
-      .string()
-      .required("Email không được để trống")
-      .email("Email phải có định dạng example@abc.com"),
-    phone: yup
-      .string()
-      .required("Số điện thoại không được bỏ trống")
-      .matches(/(((\+|)84)|0)(3|5|7|8|9)+([0-9]{8})\b/, {
-        message: "Số điện thoại không đúng định dạng",
-      }),
-  })
-  .required();
 
 function FormAddUpdateStudents() {
+  const dispatch = useDispatch();
   // ----------------------Dùng useForm để quản lý----------------------
   const {
     control,
@@ -49,19 +26,25 @@ function FormAddUpdateStudents() {
   
   const submitForm = (values) => {
     if (!isValid) return;
+    dispatch({
+      type: CREATE_SV,
+      values,
+    });
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
-        console.log(values);
         reset({
           mssv: "",
           fullname: "",
           email: "",
           phone: "",
         });
-       
-      }, 2000);
+
+      }, 500);
+
+      setFocus("mssv");
     });
+    
   };
 
   return (

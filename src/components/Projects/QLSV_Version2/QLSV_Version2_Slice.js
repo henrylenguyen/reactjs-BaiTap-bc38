@@ -15,7 +15,6 @@ const QLSV_APISlice = createSlice({
       };
     },
     setLoading: (state,{payload}) => {
-      console.log("payload", payload);
       return {
         ...state,
         loading: payload
