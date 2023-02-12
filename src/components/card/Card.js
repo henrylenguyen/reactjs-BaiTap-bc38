@@ -64,6 +64,8 @@ const CardButton = styled.button`
 const CardTitle = styled.h3`
   font-weight: bold;
   font-size: 2rem;
+  color: red;
+  text-transform: uppercase;
 `;
 const CardButtonGroup = styled.div`
   display: flex;
@@ -71,7 +73,21 @@ const CardButtonGroup = styled.div`
     flex-direction: column;
   }
 `;
-const Card = ({ to, image, title, btnSecondary, href, hrefOthers }) => {
+const Desc = styled.div`
+  text-align: center;
+  font-size: 13px;
+  margin: 2rem 0;
+`;
+const Card = ({
+  to,
+  image,
+  title,
+  btnSecondary,
+  href,
+  hrefOthers,
+  desc,
+  use,
+}) => {
   return (
     <StyledCard>
       <StyledImage>
@@ -80,6 +96,10 @@ const Card = ({ to, image, title, btnSecondary, href, hrefOthers }) => {
       <CardContent>
         <CardBottom>
           <CardTitle>{title}</CardTitle>
+          <Desc>
+            <p className="font-semibold italic mb-5">{desc}</p>
+            <p className="italic">{use}</p>
+          </Desc>
           <CardButtonGroup>
             {to === undefined ? (
               <a href={hrefOthers}>

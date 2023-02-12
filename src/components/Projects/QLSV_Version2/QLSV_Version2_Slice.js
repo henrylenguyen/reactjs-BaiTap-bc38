@@ -8,7 +8,8 @@ const QLSV_APISlice = createSlice({
     updateSV: [],
     isUpdate: false,
     valid: false,
-    searchSV: []
+    getSearchSV: "",
+    setSearchSV: [],
   },
   reducers: {
     getSV() {},
@@ -24,36 +25,52 @@ const QLSV_APISlice = createSlice({
         loading: payload,
       };
     },
-    EditSinhVien: (state, {payload}) => {
+    EditSinhVien: (state, { payload }) => {
       return { ...state, updateSV: payload, isUpdate: true };
     },
-    UpdateSinhVien: (state,{payload}) => {
+    UpdateSinhVien: (state, { payload }) => {
       return {
         ...state,
         ...payload,
-        isUpdate:false
+        isUpdate: false,
       };
     },
-    CancelUpdateSinhVien: (state,payload)=>{
+    CancelUpdateSinhVien: (state, payload) => {
       return {
         ...state,
         payload,
         isUpdate: false,
       };
     },
-    DeleteSinhVien: (state,{payload}) => {
+    DeleteSinhVien: (state, { payload }) => {
       return {
         ...state,
         ...payload,
         isUpdate: false,
       };
     },
-    SearchSV: (state,{payload}) => {
-      console.log("payload", payload);
-      // return {
-      //   ...state,
-      //   searchSV:payload,
-      // };
+    SetValueSearchSV: (state, { payload }) => {
+      return {
+        ...state,
+        getSearchSV: payload,
+      };
+    },
+    GetValueSearchSV: (state, actions) => {
+      if (state.getSearchSV !== "") {
+        let newSV = state.listSV.map((item) => {
+          if (
+            item.mssv.includes(state.getSearchSV) ||
+            item.fullname.toLowerCase().includes(state.getSearchSV.toLocaleLowerCase())
+          ) {
+            return item;
+          }
+          return ""
+        });
+        return {
+          ...state,
+          setSearchSV : newSV,
+        };
+      }
     },
   },
 });
@@ -65,6 +82,7 @@ export const {
   UpdateSinhVien,
   CancelUpdateSinhVien,
   DeleteSinhVien,
-  SearchSV,
+  SetValueSearchSV,
+  GetValueSearchSV,
 } = QLSV_APISlice.actions;
 export default QLSV_APISlice.reducer;
